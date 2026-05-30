@@ -105,15 +105,15 @@ the remaining 4 derived features will be computed automatically : Kf = Ef·tf, b
 # 请根据您的实际训练数据调整这些范围
 PARAM_RANGES = {
     'bc':   {'min': 75.0, 'max': 600.0, 'name': 'bc (Width of the concrete substrate / mm)'},
-    'fc':   {'min': 8.0,  'max': 76.0,  'name': 'fc (Compressive strength of concrete / MPa)'},
-    'Ef':   {'min': 22.2, 'max': 425.1,  'name': 'Ef (Elastic modulus of FRP sheet / GPa)'},
+    'fc':   {'min': 8.0,  'max': 74.5,  'name': 'fc (Compressive strength of concrete / MPa)'},
+    'Ef':   {'min': 22.5, 'max': 425.1,  'name': 'Ef (Elastic modulus of FRP sheet / GPa)'},
     'tf':   {'min': 0.083,   'max':6.0,   'name': 'tf (Thickness of FRP sheet / mm)'},
     'bf':   {'min': 10.0,  'max': 200.0,  'name': 'bf (Width of FRP sheet / mm)'},
     'lf':   {'min': 20.0, 'max': 1524.0, 'name': 'lf (Bond length of FRP sheet / mm)'},
     'Kf':   {'min': 8.52, 'max': 632.4,'name': 'Kf = Ef·tf (Stiffness of FRP sheet / GPa·mm)'},
-    'bf_bc':{'min': 0.05,   'max': 1.0,    'name': 'bf/bc (Width ratio between FRP sheet and concrete substrate)'},
+    'bf_bc':{'min': 0.0333,   'max': 1.0,    'name': 'bf/bc (Width ratio between FRP sheet and concrete substrate)'},
     'Af':   {'min': 500.0,'max': 240000.0,'name': 'Af = bf·lf (Bond area of FRP sheet / mm²)'},
-    'Df':   {'min': 0.00444,   'max': 2.8,  'name': 'Df = bf·tf / lf (Slenderness ratio of FRP sheet)'}
+    'Df':   {'min': 0.00786,   'max': 1.4,  'name': 'Df = bf·tf / lf (Slenderness ratio of FRP sheet)'}
 }
 
 def check_parameters_out_of_range(bc, fc, Ef, tf, bf, lf, Kf, bf_bc, Af, Df):
@@ -195,8 +195,8 @@ if predict_btn:
     with st.spinner("Prediction in progress, please wait..."):
         prediction = model.predict(input_data)[0]
     
-    # 计算工程应用推荐值（折减系数 0.833）
-    reduction_factor = 0.833
+    # 计算工程应用推荐值（折减系数 0.838）
+    reduction_factor = 0.838
     recommended_value = prediction * reduction_factor
     
     with col_res:
